@@ -158,3 +158,75 @@
   }
 }
 @layer utilities;
+
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    width: 100%;
+}
+.header {
+    background-color: #001a34;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f8f9fa;
+    text-decoration: none;
+}
+.logo-gambar{
+    height: 50px;
+    margin-right: 10px;
+}
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
+}
+@media (min-width: 922px) {
+    .container {
+        max-width: 1240px;
+    }
+}
+.nav{
+    display: flex;
+    gap: 15px;
+    flex-direction: row;
+    color: white;
+}
+.item-nav {
+  display: flex;
+  flex-direction: row;
+}
+.item-nav > li{
+  padding: 10px;
+}
+main {
+  width: 100%;
+  padding: 20px;
+  height: 500px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
