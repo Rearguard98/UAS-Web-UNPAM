@@ -5,9 +5,30 @@ body {
     font-family: sans-serif;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0e004d; /* Warna gelap */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9990; /* Di bawah kursor (9999), tapi di atas konten lain */
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+.overlay-text {
+    color: white;
+    font-size: 4rem;
+    opacity: 0; /* Kita sembunyikan dulu biar GSAP yang memunculkan */
+}
+
 .cursor {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border: 1px solid white; /* Lingkaran garis putih */
     border-radius: 50%;      /* Membuat jadi bulat */
     position: fixed;         /* Melayang tetap di layar */
@@ -16,6 +37,41 @@ body {
     z-index: 9999;           /* Pastikan selalu di paling atas */
     pointer-events: none;    /* <--- SANGAT PENTING */
     transform: translate(-50%, -50%); /* Agar posisi mouse pas di tengah bola */
+    mix-blend-mode: difference;
+    background-color: white;
+}
+
+.cursor.active {
+    /* Kita gabungkan translate (posisi) dan scale (ukuran) */
+    transform: translate(-50%, -50%) scale(3);
+    
+    /* Opsional: Ubah warna atau transparansi */
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-color: transparent;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100; /* Pastikan di atas konten web, tapi di bawah overlay (9990) */
+    background-color: transparent; 
+    color: white; /* Sesuaikan jika background websitemu gelap */
+    
+    /* Ini kuncinya: Sembunyi di atas */
+    transform: translateY(-100%);
+}
+
+.menu a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
 }
 
 .hero {
@@ -35,6 +91,21 @@ body {
     opacity: 0;
     transform: translateY(50px);
 }
+.hero-btn {
+    padding: 15px 30px;
+    font-size: 1rem;
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: blue;
+    border-radius: 50px;
+    border: none;
+    color: white;
+}
+.hero-btn:hover {
+    background-color: white;
+    color: #111;
+}
+
 .about {
     height: 100vh; /* Tinggi satu layar penuh */
     display: flex;

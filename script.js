@@ -1,3 +1,20 @@
+const cursor = document.querySelector(".cursor"); // Ambil elemen bola kita
+const targets = document.querySelectorAll("a, img"); // Ambil semua target
+
+// Loop setiap target
+targets.forEach(target => {
+    // Saat masuk
+    target.addEventListener("mouseenter", () => {
+        cursor.classList.add("active");
+    });
+
+    // Saat keluar
+    target.addEventListener("mouseleave", () => {
+        cursor.classList.remove("active");
+    });
+});
+
+
 // 1. Inisialisasi Lenis
 const lenis = new Lenis({
     duration: 1.2, // Atur durasi kelicinan (semakin besar semakin licin/lambat)
@@ -14,6 +31,49 @@ gsap.ticker.add((time) => {
 
 // 4. Matikan lag smoothing GSAP (opsional, tapi disarankan untuk scroll)
 gsap.ticker.lagSmoothing(0);
+
+
+// Membuat wadah timeline
+const tl = gsap.timeline();
+
+// Langkah 1: Teks Muncul
+tl.to(".overlay-text", {
+    y: 0,
+    opacity: 1,
+    duration: 1
+});
+
+// Langkah 2: Teks Menghilang
+tl.to(".overlay-text", {
+    y: 0,
+    opacity: 0,
+    duration: 1,
+    delay: 1 // Opsional: Tahan sebentar sebelum hilang
+});
+
+// Langkah 3: Tirai Terbuka
+tl.to(".overlay", {
+    y: "-100%",
+    borderBottomLeftRadius: "50%",  // Membuat sudut kiri bawah melengkung
+    borderBottomRightRadius: "50%", // Membuat sudut kanan bawah melengkung
+    duration: 2,
+    ease: "power4.inOut"
+});
+
+// Langkah 4: Sudut Tirai Kembali Rata
+tl.to(".overlay", {
+    borderBottomLeftRadius: "0%",
+    borderBottomRightRadius: "0%",
+    duration: 0.5, // Cepat saja
+    ease: "power1.out"
+});
+
+// Langkah 5: Navigasi Turun
+tl.to(".navbar", {
+    y: "0%",
+    duration: 1,
+    ease: "power2.out"
+}, "-=0.5"); // Trik kecil: Mulai 0.5 detik LEBIH AWAL sebelum tirai selesai (biar smooth)
 
 // Memastikan halaman sudah dimuat sepenuhnya sebelum animasi jalan
 window.addEventListener("load", () => {
@@ -79,4 +139,14 @@ ScrollTrigger.create({
     start: "top top",       // Mulai saat BAGIAN ATAS .services menyentuh BAGIAN ATAS layar
     end: "bottom bottom",   // Selesai saat BAGIAN BAWAH .services menyentuh BAGIAN BAWAH layar
     pin: ".services-left"   // Elemen mana yang mau dipaku?
+});
+
+// Menggerakkan kursor mengikuti mouse
+window.addEventListener("mousemove", (e) => {
+    gsap.to(cursor, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.1, // Sedikit delay agar terlihat "mengayun" halus
+        ease: "power2.out"
+    });
 });
