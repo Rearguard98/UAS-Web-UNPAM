@@ -15,6 +15,13 @@ targets.forEach(target => {
     });
 });
 
+btnHero.addEventListener("mouseenter", () => {
+    cursor.classList.add("active");
+});
+
+btnHero.addEventListener("mouseleave", () => {
+        cursor.classList.remove("active");
+});
 
 // 1. Inisialisasi Lenis
 const lenis = new Lenis({
