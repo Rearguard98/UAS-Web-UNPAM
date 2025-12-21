@@ -65,6 +65,7 @@ body {
     
     /* Ini kuncinya: Sembunyi di atas */
     transform: translateY(-100%);
+    mix-blend-mode: difference;
 }
 
 .menu a {
@@ -195,5 +196,12 @@ body {
     }
     .hero {
         padding: 100px 20px;
+    }
+    .overlay-text {
+    color: white;
+    font-size: 2rem;
+    opacity: 0; /* Kita sembunyikan dulu biar GSAP yang memunculkan */
+    text-align: center;
+    padding: 20px;
     }
 }

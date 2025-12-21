@@ -1,5 +1,6 @@
 const cursor = document.querySelector(".cursor"); // Ambil elemen bola kita
 const targets = document.querySelectorAll("a, img"); // Ambil semua target
+const btnHero = document.querySelector(".hero-btn");
 
 // Loop setiap target
 targets.forEach(target => {
