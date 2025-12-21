@@ -84,7 +84,7 @@ body {
 }
 
 .service-item {
-    height: 80vh;         /* Kita buat itemnya sangat tinggi agar butuh banyak scroll */
+    height: 25vh;         /* Kita buat itemnya sangat tinggi agar butuh banyak scroll */
     display: flex;
     align-items: center;
     font-size: 3rem;
