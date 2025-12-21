@@ -75,6 +75,15 @@ tl.to(".navbar", {
     ease: "power2.out"
 }, "-=0.5"); // Trik kecil: Mulai 0.5 detik LEBIH AWAL sebelum tirai selesai (biar smooth)
 
+// Langkah 6: Hero Section Muncul (Stagger)
+tl.to(".hero > *", {
+    y: "0%",
+    opacity: 1,
+    duration: 1,
+    stagger: 0.2,     // Jeda 0.2 detik antar elemen
+    ease: "power2.out"
+}, "-=0.8"); // Trik: Mulai 0.8 detik lebih awal (saat Navigasi sedang turun)
+
 // Memastikan halaman sudah dimuat sepenuhnya sebelum animasi jalan
 window.addEventListener("load", () => {
 
