@@ -34,13 +34,13 @@
         <h1 class="overlay-text">Selamat Datang</h1>
     </div>
 
-    <div>
+    <div class="container">
         <nav class="navbar">
-        <div class="logo">Portofolio Saya</div>
+        <div class="logo"><a href="/"><img src="logo.avif" alt="Logo"></a></div>
         <div class="menu">
-            <a href="#">Karya</a>
-            <a href="#">Tentang</a>
-            <a href="#">Kontak</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#karya">Karya</a>
+            <a href="#skill">Skill</a>
         </div>
         </nav>
     </div>
@@ -53,7 +53,7 @@
         </div>
     </section>
 
-    <section class="about">
+    <section id="tentang" class="about">
         <div class="about-content">
             <h2>Tentang Saya</h2>
             <p class="about-text">
@@ -63,14 +63,26 @@
         </div>
     </section>
 
-    <section class="projects">
+    <section id="karya" class="projects">
         <div class="project-container">
-            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Project Image" class="project-img">
+            <div class="project-card">
+                <img src="Portfolio-Hiqmauinjakarta.webp" alt="Proyek Website HIQMA" class="project-img">
+                <h3>Proyek HIQMA</h3>
+            </div>
+            <div class="project-card">
+                <img src="Portfolio-kargojambi.webp" alt="Proyek Website Kargo Jambi" class="project-img">
+                <h3>Proyek Kargo Jambi</h3>
+            </div>
+            <div class="project-card">
+                <img src="Portfolio-kargopekanbaru.webp" alt="Proyek Website Kargo Pekanbaru" class="project-img">
+                <h3>Proyek Kargo Pekanbaru</h3>
+            </div>
         </div>
-        <h3>Fotografi Perkotaan</h3>
+        
+        </div>
     </section>
 
-    <section class="services">
+    <section id="skill" class="services">
         <div class="services-left">
             <h2>Keahlian</h2>
         </div>

@@ -5,6 +5,20 @@ body {
     font-family: sans-serif;
 }
 
+.logo img {
+    height: 50px;
+}
+
+.container{
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 auto;
+
+}
 .overlay {
     position: fixed;
     top: 0;
@@ -51,13 +65,14 @@ body {
 }
 
 .navbar {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
     padding: 50px 50px;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-evenly;
     align-items: center;
     z-index: 100; /* Pastikan di atas konten web, tapi di bawah overlay (9990) */
     background-color: transparent; 
@@ -123,10 +138,15 @@ body {
 }
 
 .project-container {
-    width: 1080px;
-    height: 600px;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
     overflow: hidden; /* PENTING: Memotong gambar yang keluar dari kotak */
     margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 50px;
+    place-items: center;
 }
 
 .project-img {
@@ -164,6 +184,23 @@ body {
 
 /* --- Tampilan Mobile (Responsif) --- */
 @media (max-width: 768px) {
+
+    .projects {
+        width: 100%; /* Penuh lebar layar HP */
+        height: auto; 
+        padding: 20px;
+    }
+    .project-container {
+      display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 50px;
+    place-items: center;
+    }
+
+    .project-img{
+      width: 80%;
+    }
+
     /* 1. Ubah susunan Section Services jadi Atas-Bawah */
     .services {
         flex-direction: column; 
@@ -188,14 +225,9 @@ body {
         font-size: 1.5rem;  /* Lebih kecil dari 3rem */
         height: 30vh;       /* Kurangi tingginya agar tidak terlalu capek scroll */
     }
-    
-    /* 5. Perbaikan untuk Project Container agar tidak lewat batas */
-    .project-container {
-        width: 100%; /* Penuh lebar layar HP */
-        height: 300px;
-    }
+
     .hero {
-        padding: 50px 20px;
+        padding: 0px 20px;
     }
     .overlay-text {
     color: white;
@@ -206,4 +238,16 @@ body {
     }
     .hero h1 { font-size: 2rem; }
     .hero p { font-size: 1rem; }
+    .cursor {
+      display: none;
+    }
+    .navbar{
+      padding: 20px 20px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .about{
+      padding: 20px;
+    }
 }
