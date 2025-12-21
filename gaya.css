@@ -1,234 +1,126 @@
-:root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
-    --default-font-family: var(--font-sans);
-    --default-mono-font-family: var(--font-mono);
-  }
-
-*, ::after, ::before, ::backdrop, ::file-selector-button {
-    box-sizing: border-box;
+body {
     margin: 0;
-    padding: 0;
-    border: 0 solid;
-  }
-  html, :host {
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
-    tab-size: 4;
-    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
-    font-feature-settings: var(--default-font-feature-settings, normal);
-    font-variation-settings: var(--default-font-variation-settings, normal);
-    -webkit-tap-highlight-color: transparent;
-  }
-  hr {
-    height: 0;
-    color: inherit;
-    border-top-width: 1px;
-  }
-  abbr:where([title]) {
-    -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-size: inherit;
-    font-weight: inherit;
-  }
-  a {
-    color: inherit;
-    -webkit-text-decoration: inherit;
-    text-decoration: inherit;
-  }
-  b, strong {
-    font-weight: bolder;
-  }
-  code, kbd, samp, pre {
-    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
-    font-feature-settings: var(--default-mono-font-feature-settings, normal);
-    font-variation-settings: var(--default-mono-font-variation-settings, normal);
-    font-size: 1em;
-  }
-  small {
-    font-size: 80%;
-  }
-  sub, sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-  sub {
-    bottom: -0.25em;
-  }
-  sup {
-    top: -0.5em;
-  }
-  table {
-    text-indent: 0;
-    border-color: inherit;
-    border-collapse: collapse;
-  }
-  :-moz-focusring {
-    outline: auto;
-  }
-  progress {
-    vertical-align: baseline;
-  }
-  summary {
-    display: list-item;
-  }
-  ol, ul, menu {
-    list-style: none;
-  }
-  img, svg, video, canvas, audio, iframe, embed, object {
-    display: block;
-  }
-  img, video {
-    max-width: 100%;
-    height: auto;
-  }
-  button, input, select, optgroup, textarea, ::file-selector-button {
-    font: inherit;
-    font-feature-settings: inherit;
-    font-variation-settings: inherit;
-    letter-spacing: inherit;
-    color: inherit;
-    border-radius: 0;
-    background-color: transparent;
-    opacity: 1;
-  }
-  :where(select:is([multiple], [size])) optgroup {
-    font-weight: bolder;
-  }
-  :where(select:is([multiple], [size])) optgroup option {
-    padding-inline-start: 20px;
-  }
-  ::file-selector-button {
-    margin-inline-end: 4px;
-  }
-  ::placeholder {
-    opacity: 1;
-  }
-  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
-    ::placeholder {
-      color: currentcolor;
-      @supports (color: color-mix(in lab, red, red)) {
-        color: color-mix(in oklab, currentcolor 50%, transparent);
-      }
-    }
-  }
-  textarea {
-    resize: vertical;
-  }
-  ::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-  ::-webkit-date-and-time-value {
-    min-height: 1lh;
-    text-align: inherit;
-  }
-  ::-webkit-datetime-edit {
-    display: inline-flex;
-  }
-  ::-webkit-datetime-edit-fields-wrapper {
-    padding: 0;
-  }
-  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
-    padding-block: 0;
-  }
-  ::-webkit-calendar-picker-indicator {
-    line-height: 1;
-  }
-  :-moz-ui-invalid {
-    box-shadow: none;
-  }
-  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
-    appearance: button;
-  }
-  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
-    height: auto;
-  }
-  [hidden]:where(:not([hidden="until-found"])) {
-    display: none !important;
-  }
-
-
-
-
-
-body{
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    width: 100%;
+    background-color: #111;
+    color: white;
+    font-family: sans-serif;
 }
-.header {
-    background-color: #001a34;
-    padding: 20px;
+
+.hero {
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Kita sembunyikan dulu elemennya agar nanti bisa dimunculkan oleh GSAP */
+.hero-text, .hero-btn {
+    opacity: 0; 
+    max-width: 600px;
+    text-align: center;
+    /* Kita set transparansi awal agar nanti bisa dianimasikan */
+    opacity: 0;
+    transform: translateY(50px);
+}
+.about {
+    height: 100vh; /* Tinggi satu layar penuh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    color: #111;
+}
+
+.about-content {
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Kita sembunyikan anak-anaknya langsung */
+.about-content h2, 
+.about-content p {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.projects {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #111; /* Kembali gelap agar kontras */
+}
+
+.project-container {
+    width: 600px;
+    height: 400px;
+    overflow: hidden; /* PENTING: Memotong gambar yang keluar dari kotak */
+    margin-bottom: 20px;
+}
+
+.project-img {
+    width: 100%;
+    height: 120%; /* PENTING: Gambar harus lebih tinggi dari container-nya agar bisa digerakkan */
+    object-fit: cover;
+}
+
+.services {
+    display: flex;        /* Agar bersebelahan kiri-kanan */
+    padding: 100px 50px;
+    background-color: white;
+    color: #111;
+}
+
+.services-left {
+    width: 40%;           /* Lebar kolom kiri */
+    height: 100vh;        /* KUNCI: Tinggi kolom kiri sama dengan layar */
+    display: flex;
+    align-items: center;  /* Tulisan di tengah vertikal */
+}
+
+.services-right {
+    width: 60%;           /* Lebar kolom kanan */
+}
+
+.service-item {
+    height: 80vh;         /* Kita buat itemnya sangat tinggi agar butuh banyak scroll */
     display: flex;
     align-items: center;
-    flex-direction: row;
+    font-size: 3rem;
+    border-bottom: 1px solid #ccc;
 }
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #f8f9fa;
-    text-decoration: none;
-}
-.logo-gambar{
-    height: 50px;
-    margin-right: 10px;
-}
-.container {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between
-}
-@media (min-width: 922px) {
-    .container {
-        max-width: 1240px;
+
+/* --- Tampilan Mobile (Responsif) --- */
+@media (max-width: 768px) {
+    /* 1. Ubah susunan Section Services jadi Atas-Bawah */
+    .services {
+        flex-direction: column; 
+        padding: 50px 20px; /* Kurangi padding agar tidak sempit */
     }
-}
-.nav{
-    display: flex;
-    gap: 15px;
-    flex-direction: row;
-    color: white;
-}
-.item-nav {
-  display: flex;
-  flex-direction: row;
-}
-.item-nav > li{
-  padding: 10px;
-}
-main {
-  width: 100%;
-  padding: 20px;
-  height: 500px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-footer {
-    background-color: #f8f9fa;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top: 20px;
-}
-.article-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
+
+    /* 2. Atur Lebar jadi Penuh (100%) */
+    .services-left, 
+    .services-right {
+        width: 100%;
+    }
+
+    /* 3. Sesuaikan Bagian Judul (Keahlian) */
+    .services-left {
+        height: auto;       /* Jangan setinggi layar, cukup setinggi teks */
+        margin-bottom: 30px; /* Beri jarak dengan daftar di bawahnya */
+        justify-content: flex-start;
+    }
+
+    /* 4. Kecilkan Ukuran Huruf Daftar agar muat */
+    .service-item {
+        font-size: 1.5rem;  /* Lebih kecil dari 3rem */
+        height: 30vh;       /* Kurangi tingginya agar tidak terlalu capek scroll */
+    }
+    
+    /* 5. Perbaikan untuk Project Container agar tidak lewat batas */
+    .project-container {
+        width: 100%; /* Penuh lebar layar HP */
+        height: 300px;
+    }
 }
