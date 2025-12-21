@@ -53,8 +53,8 @@ body {
 }
 
 .project-container {
-    width: 600px;
-    height: 400px;
+    width: 1080px;
+    height: 600px;
     overflow: hidden; /* PENTING: Memotong gambar yang keluar dari kotak */
     margin-bottom: 20px;
 }
@@ -63,6 +63,7 @@ body {
     width: 100%;
     height: 120%; /* PENTING: Gambar harus lebih tinggi dari container-nya agar bisa digerakkan */
     object-fit: cover;
+    padding-top: 50px;
 }
 
 .services {
@@ -84,7 +85,7 @@ body {
 }
 
 .service-item {
-    height: 25vh;         /* Kita buat itemnya sangat tinggi agar butuh banyak scroll */
+    height: 50vh;         /* Kita buat itemnya sangat tinggi agar butuh banyak scroll */
     display: flex;
     align-items: center;
     font-size: 3rem;
@@ -122,5 +123,8 @@ body {
     .project-container {
         width: 100%; /* Penuh lebar layar HP */
         height: 300px;
+    }
+    .hero {
+        padding: 100px 20px;
     }
 }

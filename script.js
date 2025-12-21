@@ -53,7 +53,6 @@ gsap.to(".about-content h2, .about-content p", { // Targetkan kedua elemen
     scrollTrigger: {
         trigger: ".about",
         start: "top 60%",    // Kita ubah sedikit agar mulai saat elemen di 60% layar
-        markers: false
     },
     y: 0,
     opacity: 1,
@@ -69,7 +68,6 @@ gsap.to(".project-img", {
         start: "top bottom", // Mulai saat bagian ATAS container menyentuh BAGIAN BAWAH layar
         end: "bottom top",   // Selesai saat bagian BAWAH container menyentuh BAGIAN ATAS layar
         scrub: 1,            // Mengikat animasi ke scrollbar (angka 1 memberi sedikit efek halus/delay)
-        markers: false      // Boleh dinyalakan untuk melihat titik mulainya
     },
     y: -50,         // Gerakkan gambar ke atas sejauh 50px
     ease: "none"    // Penting: Gunakan "none" agar gerakannya linear/rata mengikuti scroll
