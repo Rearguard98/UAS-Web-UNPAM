@@ -117,7 +117,6 @@ body {
 }
 
 .about-content {
-    max-width: 600px;
     text-align: center;
 }
 
@@ -198,7 +197,7 @@ body {
     }
 
     .project-img{
-      width: 80%;
+      width: 100%;
     }
 
     /* 1. Ubah susunan Section Services jadi Atas-Bawah */
@@ -249,5 +248,8 @@ body {
     }
     .about{
       padding: 20px;
+    }
+    .about-text{
+      text-align: justify;
     }
 }
