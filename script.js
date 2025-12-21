@@ -90,37 +90,8 @@ tl.to(".hero > *", {
     duration: 1,
     stagger: 0.2,     // Jeda 0.2 detik antar elemen
     ease: "power2.out"
-}, "-=0.8"); // Trik: Mulai 0.8 detik lebih awal (saat Navigasi sedang turun)
+}); // Trik: Mulai 0.8 detik lebih awal (saat Navigasi sedang turun)
 
-// Memastikan halaman sudah dimuat sepenuhnya sebelum animasi jalan
-window.addEventListener("load", () => {
-
-    // Set posisi awal elemen turun 50px ke bawah
-    gsap.set(".hero-text", { y: 50 });
-    
-    // Animasi Text
-    gsap.to(".hero-text", {
-        duration: 1.5,    // Durasi animasi dalam detik
-        y: 0,             // Posisi vertikal akhir (0 berarti kembali ke posisi asli)
-        opacity: 1,       // Opasitas akhir
-        ease: "power3.out", // Gaya gerakan (cepat di awal, melambat di akhir)
-        stagger: 0.3      // Jeda waktu antar elemen .hero-text
-    });
-
-    // Animasi Tombol (muncul setelah text selesai)
-    gsap.to(".hero-btn", {
-        duration: 1,
-        delay: 1,         // Menunggu 1 detik sebelum mulai
-        opacity: 1,
-        scale: 1,         // Ukuran normal
-        ease: "back.out(1.7)" // Efek membal sedikit (bouncy)
-    });
-    
-    /* Catatan: Agar efek gerakannya terlihat (slide up), 
-       kita perlu set posisi awal elemen di CSS atau lewat gsap.set()
-       tapi untuk sekarang kita fokus ke opacity dulu.
-    */
-});
 
 // Mendaftarkan plugin agar bisa dipakai
 gsap.registerPlugin(ScrollTrigger);
