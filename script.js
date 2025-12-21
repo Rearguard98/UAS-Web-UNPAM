@@ -2,6 +2,28 @@ const cursor = document.querySelector(".cursor"); // Ambil elemen bola kita
 const targets = document.querySelectorAll("a, img"); // Ambil semua target
 const btnHero = document.querySelector(".hero-btn");
 
+// Menambahkan magnetik cursor pada tombol hero
+btnHero.addEventListener("mousemove", (e) => {
+    const x = e.offsetX - (btnHero.offsetWidth / 2); //bagi 2 dari tombol horizontal
+    const y = e.offsetY - (btnHero.offsetHeight / 2); //bagi 2 dari tombol vertical
+    gsap.to(".hero-btn", {
+    x: x,
+    y: y,
+    duration: 0.1, 
+    ease: "power2.out"
+});
+})
+
+// Reset saat mouse keluar
+btnHero.addEventListener("mouseleave", () => {
+    gsap.to(btnHero, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.3)"
+    });
+});
+
 // Loop setiap target
 targets.forEach(target => {
     // Saat masuk
@@ -90,8 +112,7 @@ tl.to(".hero > *", {
     duration: 1,
     stagger: 0.2,     // Jeda 0.2 detik antar elemen
     ease: "power2.out"
-}); // Trik: Mulai 0.8 detik lebih awal (saat Navigasi sedang turun)
-
+}, "-=0.8"); // Trik: Mulai 0.8 detik lebih awal (saat Navigasi sedang turun)
 
 // Mendaftarkan plugin agar bisa dipakai
 gsap.registerPlugin(ScrollTrigger);
