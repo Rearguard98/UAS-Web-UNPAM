@@ -2,48 +2,77 @@ const cursor = document.querySelector(".cursor"); // Ambil elemen bola kita
 const targets = document.querySelectorAll("a, img"); // Ambil semua target
 const btnHero = document.querySelector(".hero-btn");
 
-// Menambahkan magnetik cursor pada tombol hero
-btnHero.addEventListener("mousemove", (e) => {
-    const x = e.offsetX - (btnHero.offsetWidth / 2); //bagi 2 dari tombol horizontal
-    const y = e.offsetY - (btnHero.offsetHeight / 2); //bagi 2 dari tombol vertical
-    gsap.to(".hero-btn", {
-    x: x,
-    y: y,
-    duration: 0.1, 
-    ease: "power2.out"
-});
-})
+// Mobile Menu Toggle
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
 
-// Reset saat mouse keluar
-btnHero.addEventListener("mouseleave", () => {
-    gsap.to(btnHero, {
-        x: 0,
-        y: 0,
-        duration: 0.5,
-        ease: "elastic.out(1, 0.3)"
+// Safe event listeners - check if elements exist
+if (hamburger && mobileMenu) {
+    hamburger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.toggle("active");
     });
-});
 
-// Loop setiap target
-targets.forEach(target => {
-    // Saat masuk
-    target.addEventListener("mouseenter", () => {
+    // Close menu when a link is clicked
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.remove("active");
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".navbar") && !e.target.closest(".mobile-menu")) {
+            mobileMenu.classList.remove("active");
+        }
+    });
+}
+
+// Menambahkan magnetik cursor pada tombol hero (dengan null check)
+if (btnHero) {
+    btnHero.addEventListener("mousemove", (e) => {
+        const x = e.offsetX - (btnHero.offsetWidth / 2);
+        const y = e.offsetY - (btnHero.offsetHeight / 2);
+        gsap.to(".hero-btn", {
+            x: x,
+            y: y,
+            duration: 0.1, 
+            ease: "power2.out"
+        });
+    });
+
+    // Reset saat mouse keluar
+    btnHero.addEventListener("mouseleave", () => {
+        gsap.to(btnHero, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: "elastic.out(1, 0.3)"
+        });
+    });
+
+    btnHero.addEventListener("mouseenter", () => {
         cursor.classList.add("active");
     });
 
-    // Saat keluar
-    target.addEventListener("mouseleave", () => {
+    btnHero.addEventListener("mouseleave", () => {
         cursor.classList.remove("active");
     });
-});
+}
 
-btnHero.addEventListener("mouseenter", () => {
-    cursor.classList.add("active");
-});
+// Loop setiap target (hanya jika cursor ada)
+if (cursor) {
+    targets.forEach(target => {
+        target.addEventListener("mouseenter", () => {
+            cursor.classList.add("active");
+        });
 
-btnHero.addEventListener("mouseleave", () => {
-        cursor.classList.remove("active");
-});
+        target.addEventListener("mouseleave", () => {
+            cursor.classList.remove("active");
+        });
+    });
+}
 
 // 1. Inisialisasi Lenis
 const lenis = new Lenis({
@@ -66,19 +95,20 @@ gsap.ticker.lagSmoothing(0);
 // Membuat wadah timeline
 const tl = gsap.timeline();
 
-// Langkah 1: Teks Muncul
+// Langkah 1: Teks Muncul (3 detik untuk tampil)
 tl.to(".overlay-text", {
     y: 0,
     opacity: 1,
-    duration: 1
+    duration: 2,
+    ease: "power2.out"
 });
 
-// Langkah 2: Teks Menghilang
+// Langkah 2: Teks Menghilang (3 detik untuk hilang)
 tl.to(".overlay-text", {
     y: 0,
     opacity: 0,
-    duration: 1,
-    delay: 1 // Opsional: Tahan sebentar sebelum hilang
+    duration: 2,
+    delay: 1 // Tahan 2 detik sebelum hilang
 });
 
 // Langkah 3: Tirai Terbuka
@@ -150,12 +180,287 @@ ScrollTrigger.create({
     pin: ".services-left"   // Elemen mana yang mau dipaku?
 });
 
-// Menggerakkan kursor mengikuti mouse
-window.addEventListener("mousemove", (e) => {
-    gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1, // Sedikit delay agar terlihat "mengayun" halus
-        ease: "power2.out"
+// Menggerakkan kursor mengikuti mouse (hanya jika cursor ada dan bukan mobile)
+if (cursor && window.matchMedia("(hover: hover)").matches) {
+    window.addEventListener("mousemove", (e) => {
+        gsap.to(cursor, {
+            x: e.clientX,
+            y: e.clientY,
+            duration: 0.1,
+            ease: "power2.out"
+        });
+    });
+}
+
+// Modal Functionality
+const projectCards = document.querySelectorAll(".project-card");
+const modals = document.querySelectorAll(".modal");
+const closeButtons = document.querySelectorAll(".modal-close");
+
+// Open modal when card is clicked
+projectCards.forEach(card => {
+    card.addEventListener("click", () => {
+        const modalId = card.getAttribute("data-modal");
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        }
+    });
+
+    // Add keyboard support
+    card.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            card.click();
+        }
     });
 });
+
+// Close modal when close button is clicked
+closeButtons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const modal = btn.closest(".modal");
+        if (modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = ""; // Restore scrolling
+        }
+    });
+});
+
+// Close modal when clicking outside the modal content
+modals.forEach(modal => {
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+        }
+    });
+});
+
+// Close modal with Escape key
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        modals.forEach(modal => {
+            modal.classList.remove("active");
+            document.body.style.overflow = "";
+        });
+    }
+});
+
+// ===== NEW FEATURES =====
+
+// Preloader - Remove after 4.5 seconds (synced with overlay animation)
+window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+        setTimeout(() => {
+            preloader.style.display = "none";
+        }, 4500);
+    }
+});
+
+// Scroll Progress Indicator
+const scrollProgress = document.getElementById("scroll-progress");
+window.addEventListener("scroll", () => {
+    if (scrollProgress) {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.scrollY / scrollHeight) * 100;
+        scrollProgress.style.width = scrolled + "%";
+    }
+});
+
+// Theme Toggle (Dark/Light Mode)
+const themeToggle = document.getElementById("theme-toggle");
+const htmlElement = document.documentElement;
+
+// Load saved theme preference
+const savedTheme = localStorage.getItem("theme") || "dark";
+if (savedTheme === "light") {
+    document.body.classList.add("light-mode");
+}
+
+themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light-mode");
+    const isLight = document.body.classList.contains("light-mode");
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+});
+
+// Project Filter
+const filterButtons = document.querySelectorAll(".filter-btn");
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        // Add active class to clicked button
+        button.classList.add("active");
+
+        const filterValue = button.getAttribute("data-filter");
+
+        // Show/hide projects based on filter
+        projectCards.forEach(card => {
+            if (filterValue === "all") {
+                card.classList.remove("hidden");
+            } else {
+                const categories = card.getAttribute("data-category").split(" ");
+                if (categories.includes(filterValue)) {
+                    card.classList.remove("hidden");
+                } else {
+                    card.classList.add("hidden");
+                }
+            }
+        });
+    });
+});
+
+// Animated Counter
+const counters = document.querySelectorAll(".counter");
+counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute("data-value"));
+    let current = 0;
+    const increment = target / 30;
+
+    const updateCounter = () => {
+        if (current < target) {
+            current += increment;
+            counter.textContent = Math.floor(current);
+            setTimeout(updateCounter, 50);
+        } else {
+            counter.textContent = target;
+        }
+    };
+
+    // Start counter on scroll into view
+    const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+            updateCounter();
+            observer.unobserve(counter);
+        }
+    });
+
+    observer.observe(counter);
+});
+
+// Animated Skill Progress Bars
+const skillBars = document.querySelectorAll(".skill-progress");
+const skillObserver = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+        const bar = entry.target;
+        const target = bar.getAttribute("data-target");
+        gsap.to(bar, {
+            width: target + "%",
+            duration: 1.5,
+            ease: "power2.out"
+        });
+        skillObserver.unobserve(bar);
+    }
+});
+
+skillBars.forEach(bar => skillObserver.observe(bar));
+
+// Timeline Animation
+const timelineItems = document.querySelectorAll(".timeline-item");
+const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.animation = "slideInTimeline 0.6s ease forwards";
+            timelineObserver.unobserve(entry.target);
+        }
+    });
+});
+
+timelineItems.forEach(item => timelineObserver.observe(item));
+
+// Contact Form Validation and Submission
+const contactForm = document.getElementById("contact-form");
+if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        // Simple validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        let isValid = true;
+
+        // Reset error messages
+        document.querySelectorAll(".form-group").forEach(group => {
+            group.classList.remove("error");
+            const errorMsg = group.querySelector(".error-msg");
+            if (errorMsg) errorMsg.textContent = "";
+        });
+
+        // Validate name
+        if (name.length < 3) {
+            showError(document.getElementById("name"), "Nama minimal 3 karakter");
+            isValid = false;
+        }
+
+        // Validate email
+        if (!emailRegex.test(email)) {
+            showError(document.getElementById("email"), "Email tidak valid");
+            isValid = false;
+        }
+
+        // Validate message
+        if (message.length < 10) {
+            showError(document.getElementById("message"), "Pesan minimal 10 karakter");
+            isValid = false;
+        }
+
+        if (isValid) {
+            // Simulate sending (replace with actual API call)
+            const submitBtn = contactForm.querySelector(".submit-btn");
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Mengirim...";
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                // Success message
+                const formMessage = contactForm.querySelector(".form-message");
+                formMessage.textContent = "Pesan terkirim! Terima kasih telah menghubungi saya.";
+                formMessage.className = "form-message success";
+
+                // Reset form
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+
+                // Clear message after 5 seconds
+                setTimeout(() => {
+                    formMessage.className = "form-message";
+                }, 5000);
+            }, 1500);
+        }
+    });
+}
+
+function showError(input, message) {
+    const formGroup = input.parentElement;
+    formGroup.classList.add("error");
+    const errorMsg = formGroup.querySelector(".error-msg");
+    if (errorMsg) errorMsg.textContent = message;
+}
+
+// Add timeline animation keyframe
+if (!document.querySelector("style[data-timeline]")) {
+    const style = document.createElement("style");
+    style.setAttribute("data-timeline", "true");
+    style.textContent = `
+        @keyframes slideInTimeline {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
