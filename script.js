@@ -1,27 +1,27 @@
 const cursor = document.querySelector(".cursor"); // Ambil elemen bola kita
 const targets = document.querySelectorAll("a, img"); // Ambil semua target
-const btnHero = document.querySelector(".hero-btn");
+const btnHero = document.querySelector(".hero-btn"); // Ambil tombol hero
 
 // Mobile Menu Toggle
 const hamburger = document.getElementById("hamburger");
 const mobileMenu = document.getElementById("mobileMenu");
 const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
 
-// Safe event listeners - check if elements exist
+// Safe event listeners - Cek jika elemen ada (untuk menu mobile)
 if (hamburger && mobileMenu) {
     hamburger.addEventListener("click", (e) => {
         e.stopPropagation();
         mobileMenu.classList.toggle("active");
     });
 
-    // Close menu when a link is clicked
+    // Tutup menu saat link diklik
     mobileMenuLinks.forEach(link => {
         link.addEventListener("click", () => {
             mobileMenu.classList.remove("active");
         });
     });
 
-    // Close menu when clicking outside
+    // Tutup menu saat klik di luar
     document.addEventListener("click", (e) => {
         if (!e.target.closest(".navbar") && !e.target.closest(".mobile-menu")) {
             mobileMenu.classList.remove("active");
@@ -34,7 +34,7 @@ if (btnHero) {
     btnHero.addEventListener("mousemove", (e) => {
         const x = e.offsetX - (btnHero.offsetWidth / 2);
         const y = e.offsetY - (btnHero.offsetHeight / 2);
-        gsap.to(".hero-btn", {
+        gsap.to(".hero-btn", { // Animasi tombol magnetik pake gsap
             x: x,
             y: y,
             duration: 0.1, 
@@ -42,7 +42,7 @@ if (btnHero) {
         });
     });
 
-    // Reset saat mouse keluar
+    // Reset saat mouse keluar dengan efek elastis
     btnHero.addEventListener("mouseleave", () => {
         gsap.to(btnHero, {
             x: 0,
@@ -53,15 +53,15 @@ if (btnHero) {
     });
 
     btnHero.addEventListener("mouseenter", () => {
-        cursor.classList.add("active");
+        cursor.classList.add("active"); // nyalain efek cursor saat diatas tombol
     });
 
     btnHero.addEventListener("mouseleave", () => {
-        cursor.classList.remove("active");
+        cursor.classList.remove("active"); // matiin efek cursor saat keluar dari tombol
     });
 }
 
-// Loop setiap target (hanya jika cursor ada)
+// Loop setiap target link dan gambar (hanya jika cursor ada)
 if (cursor) {
     targets.forEach(target => {
         target.addEventListener("mouseenter", () => {
@@ -74,7 +74,7 @@ if (cursor) {
     });
 }
 
-// 1. Inisialisasi Lenis
+// 1. Inisialisasi Lenis untuk smooth scrolling
 const lenis = new Lenis({
     duration: 1.2, // Atur durasi kelicinan (semakin besar semakin licin/lambat)
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // Fungsi matematika untuk kehalusan
@@ -95,7 +95,7 @@ gsap.ticker.lagSmoothing(0);
 // Membuat wadah timeline
 const tl = gsap.timeline();
 
-// Langkah 1: Teks Muncul (3 detik untuk tampil)
+// Langkah 1: Teks Muncul (2 detik untuk tampil)
 tl.to(".overlay-text", {
     y: 0,
     opacity: 1,
@@ -103,12 +103,12 @@ tl.to(".overlay-text", {
     ease: "power2.out"
 });
 
-// Langkah 2: Teks Menghilang (3 detik untuk hilang)
+// Langkah 2: Teks Menghilang (2 detik untuk hilang)
 tl.to(".overlay-text", {
     y: 0,
     opacity: 0,
     duration: 2,
-    delay: 1 // Tahan 2 detik sebelum hilang
+    delay: 1 // Tahan 1 detik sebelum hilang
 });
 
 // Langkah 3: Tirai Terbuka
@@ -156,7 +156,7 @@ gsap.to(".about-content h2, .about-content p", { // Targetkan kedua elemen
     y: 0,
     opacity: 1,
     duration: 1,
-    stagger: 0.3,  // <--- INI KUNCINYA: Jeda 0.3 detik antar elemen
+    stagger: 0.3,  // Jeda 0.3 detik antar elemen
     ease: "power2.out"
 });
 
@@ -192,23 +192,23 @@ if (cursor && window.matchMedia("(hover: hover)").matches) {
     });
 }
 
-// Modal Functionality
+// Fungsi Modal pada gambar proyek
 const projectCards = document.querySelectorAll(".project-card");
 const modals = document.querySelectorAll(".modal");
 const closeButtons = document.querySelectorAll(".modal-close");
 
-// Open modal when card is clicked
+// Buka modal saat kartu proyek diklik
 projectCards.forEach(card => {
     card.addEventListener("click", () => {
         const modalId = card.getAttribute("data-modal");
         const modal = document.getElementById(modalId);
         if (modal) {
             modal.classList.add("active");
-            document.body.style.overflow = "hidden"; // Prevent scrolling
+            document.body.style.overflow = "hidden"; // mematikan scroll saat modal aktif
         }
     });
 
-    // Add keyboard support
+    // Membuka modal dengan keyboard (Enter atau Spasi)
     card.addEventListener("keypress", (e) => {
         if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -217,19 +217,19 @@ projectCards.forEach(card => {
     });
 });
 
-// Close modal when close button is clicked
+// Tutup modal saat tombol close/X diklik
 closeButtons.forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.stopPropagation();
         const modal = btn.closest(".modal");
         if (modal) {
             modal.classList.remove("active");
-            document.body.style.overflow = ""; // Restore scrolling
+            document.body.style.overflow = ""; // mengembalikan scroll saat modal ditutup
         }
     });
 });
 
-// Close modal when clicking outside the modal content
+// Tutup modal saat klik di luar konten modal/Konten Proyek
 modals.forEach(modal => {
     modal.addEventListener("click", (e) => {
         if (e.target === modal) {
@@ -239,7 +239,7 @@ modals.forEach(modal => {
     });
 });
 
-// Close modal with Escape key
+// Tutup modal saat menekan tombol Escape
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
         modals.forEach(modal => {
@@ -249,9 +249,8 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-// ===== NEW FEATURES =====
 
-// Preloader - Remove after 4.5 seconds (synced with overlay animation)
+// Preloader - Hapus setelah 4.5 detik (disinkronkan dengan animasi overlay)
 window.addEventListener("load", () => {
     const preloader = document.getElementById("preloader");
     if (preloader) {
@@ -261,7 +260,7 @@ window.addEventListener("load", () => {
     }
 });
 
-// Scroll Progress Indicator
+// Progress Bar saat scroll yang diatas
 const scrollProgress = document.getElementById("scroll-progress");
 window.addEventListener("scroll", () => {
     if (scrollProgress) {
@@ -275,7 +274,7 @@ window.addEventListener("scroll", () => {
 const themeToggle = document.getElementById("theme-toggle");
 const htmlElement = document.documentElement;
 
-// Load saved theme preference
+// Muat tema dari LocalStorage saat halaman dimuat
 const savedTheme = localStorage.getItem("theme") || "dark";
 if (savedTheme === "light") {
     document.body.classList.add("light-mode");
@@ -287,19 +286,19 @@ themeToggle.addEventListener("click", () => {
     localStorage.setItem("theme", isLight ? "light" : "dark");
 });
 
-// Project Filter
+// Filter Proyek
 const filterButtons = document.querySelectorAll(".filter-btn");
 
 filterButtons.forEach(button => {
     button.addEventListener("click", () => {
-        // Remove active class from all buttons
+        // Hapus class aktif dari semua tombol
         filterButtons.forEach(btn => btn.classList.remove("active"));
-        // Add active class to clicked button
+        // Tambahkan class aktif ke tombol yang diklik
         button.classList.add("active");
 
         const filterValue = button.getAttribute("data-filter");
 
-        // Show/hide projects based on filter
+        // Tampilkan atau sembunyikan kartu proyek berdasarkan filter
         projectCards.forEach(card => {
             if (filterValue === "all") {
                 card.classList.remove("hidden");
@@ -315,7 +314,7 @@ filterButtons.forEach(button => {
     });
 });
 
-// Animated Counter
+// Animasi Counter
 const counters = document.querySelectorAll(".counter");
 counters.forEach(counter => {
     const target = parseInt(counter.getAttribute("data-value"));
@@ -332,7 +331,7 @@ counters.forEach(counter => {
         }
     };
 
-    // Start counter on scroll into view
+    // Gunakan Intersection Observer untuk memulai animasi saat elemen terlihat
     const observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
             updateCounter();
@@ -343,7 +342,7 @@ counters.forEach(counter => {
     observer.observe(counter);
 });
 
-// Animated Skill Progress Bars
+// Skill Bar Animation
 const skillBars = document.querySelectorAll(".skill-progress");
 const skillObserver = new IntersectionObserver(([entry]) => {
     if (entry.isIntersecting) {
@@ -373,7 +372,7 @@ const timelineObserver = new IntersectionObserver((entries) => {
 
 timelineItems.forEach(item => timelineObserver.observe(item));
 
-// Contact Form Validation and Submission
+// Validasi dan Pengiriman Form Kontak
 const contactForm = document.getElementById("contact-form");
 if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
@@ -383,44 +382,44 @@ if (contactForm) {
         const email = document.getElementById("email").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Simple validation
+        // Regex untuk validasi email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         let isValid = true;
 
-        // Reset error messages
+        // Bersihkan error sebelumnya
         document.querySelectorAll(".form-group").forEach(group => {
             group.classList.remove("error");
             const errorMsg = group.querySelector(".error-msg");
             if (errorMsg) errorMsg.textContent = "";
         });
 
-        // Validate name
+        // Validasi nama
         if (name.length < 3) {
             showError(document.getElementById("name"), "Nama minimal 3 karakter");
             isValid = false;
         }
 
-        // Validate email
+        // Validasi email
         if (!emailRegex.test(email)) {
             showError(document.getElementById("email"), "Email tidak valid");
             isValid = false;
         }
 
-        // Validate message
+        // Validasi pesan
         if (message.length < 10) {
             showError(document.getElementById("message"), "Pesan minimal 10 karakter");
             isValid = false;
         }
 
         if (isValid) {
-            // Simulate sending (replace with actual API call)
+            // Simulasi terkirim (harus diganti dengan integrasi backend asli)
             const submitBtn = contactForm.querySelector(".submit-btn");
             const originalText = submitBtn.textContent;
             submitBtn.textContent = "Mengirim...";
             submitBtn.disabled = true;
 
             setTimeout(() => {
-                // Success message
+                // Tampilkan pesan sukses
                 const formMessage = contactForm.querySelector(".form-message");
                 formMessage.textContent = "Pesan terkirim! Terima kasih telah menghubungi saya.";
                 formMessage.className = "form-message success";
@@ -430,7 +429,7 @@ if (contactForm) {
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
 
-                // Clear message after 5 seconds
+                // Hapus pesan setelah 5 detik
                 setTimeout(() => {
                     formMessage.className = "form-message";
                 }, 5000);
@@ -446,7 +445,7 @@ function showError(input, message) {
     if (errorMsg) errorMsg.textContent = message;
 }
 
-// Add timeline animation keyframe
+// Tambahkan gaya animasi timeline ke dokumen jika belum ada
 if (!document.querySelector("style[data-timeline]")) {
     const style = document.createElement("style");
     style.setAttribute("data-timeline", "true");
