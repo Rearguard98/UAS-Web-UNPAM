@@ -148,14 +148,14 @@ tl.to(".hero > *", {
 gsap.registerPlugin(ScrollTrigger);
 
 // Animasi Scroll
-gsap.to(".about-content h2, .about-content p", { // Targetkan kedua elemen
+gsap.to(".about-content h2, .about-content p, .about-image", { // Targetkan kedua elemen
     scrollTrigger: {
         trigger: ".about",
         start: "top 60%",    // Kita ubah sedikit agar mulai saat elemen di 60% layar
     },
     y: 0,
     opacity: 1,
-    duration: 1,
+    duration: 3,
     stagger: 0.3,  // Jeda 0.3 detik antar elemen
     ease: "power2.out"
 });
@@ -341,23 +341,6 @@ counters.forEach(counter => {
 
     observer.observe(counter);
 });
-
-// Skill Bar Animation
-const skillBars = document.querySelectorAll(".skill-progress");
-const skillObserver = new IntersectionObserver(([entry]) => {
-    if (entry.isIntersecting) {
-        const bar = entry.target;
-        const target = bar.getAttribute("data-target");
-        gsap.to(bar, {
-            width: target + "%",
-            duration: 1.5,
-            ease: "power2.out"
-        });
-        skillObserver.unobserve(bar);
-    }
-});
-
-skillBars.forEach(bar => skillObserver.observe(bar));
 
 // Timeline Animation
 const timelineItems = document.querySelectorAll(".timeline-item");

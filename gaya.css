@@ -1,3 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #111;
+    --bg-secondary: #222;
+    --text-primary: #fff;
+    --text-secondary: #ddd;
+    --accent-color: #87ceeb;
+    --accent-dark: #0e004d;
+    --button-bg:#fff;
+    --text-button: #111;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -9,21 +24,6 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-/* Light and Dark Mode Variables */
-:root {
-    --bg-primary: #111;
-    --bg-secondary: #222;
-    --text-primary: #fff;
-    --text-secondary: #ddd;
-    --accent-color: #87ceeb;
-    --accent-dark: #0e004d;
-    --button-bg:#fff;
-    --text-button: #111;
-}
 
 body.light-mode {
     --bg-primary: #f5f5f5;
@@ -40,7 +40,7 @@ body.light-mode {
     height: 50px;
 }
 
-/* Preloader Styles */
+
 .preloader {
     position: fixed;
     top: 0;
@@ -86,7 +86,6 @@ body.light-mode {
     margin: 0;
 }
 
-/* Scroll Progress Indicator */
 .scroll-progress {
     position: fixed;
     top: 0;
@@ -98,7 +97,6 @@ body.light-mode {
     transition: width 0.1s ease;
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
     position: fixed;
     bottom: 30px;
@@ -145,11 +143,11 @@ body.light-mode {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #0e004d; /* Warna gelap */
+    background-color: #0e004d;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9990; /* Di bawah kursor (9999), tapi di atas konten lain */
+    z-index: 9990; 
     border-bottom-left-radius: 0%;
     border-bottom-right-radius: 0%;
 }
@@ -157,29 +155,26 @@ body.light-mode {
 .overlay-text {
     color: white;
     font-size: 4rem;
-    opacity: 0; /* Kita sembunyikan dulu biar GSAP yang memunculkan */
+    opacity: 0; 
 }
 
 .cursor {
     width: 30px;
     height: 30px;
-    border: 1px solid white; /* Lingkaran garis putih */
-    border-radius: 50%;      /* Membuat jadi bulat */
-    position: fixed;         /* Melayang tetap di layar */
+    border: 1px solid white; 
+    border-radius: 50%;      
+    position: fixed;         
     top: 0;
     left: 0;
-    z-index: 9999;           /* Pastikan selalu di paling atas */
-    pointer-events: none;    /* <--- SANGAT PENTING */
-    transform: translate(-50%, -50%); /* Agar posisi mouse pas di tengah bola */
+    z-index: 9999;           
+    pointer-events: none;    
+    transform: translate(-50%, -50%); 
     mix-blend-mode: difference;
     background-color: white;
 }
 
 .cursor.active {
-    /* Kita gabungkan translate (posisi) dan scale (ukuran) */
     transform: translate(-50%, -50%) scale(3);
-    
-    /* Opsional: Ubah warna atau transparansi */
     background-color: rgba(255, 255, 255, 0.2); 
     border-color: transparent;
 }
@@ -194,11 +189,9 @@ body.light-mode {
     align-items: center;
     justify-content: space-evenly;
     align-items: center;
-    z-index: 100; /* Pastikan di atas konten web, tapi di bawah overlay (9990) */
+    z-index: 100; 
     background-color: var(--bg-secondary); 
-    color: var(--text-primary); /* Sesuaikan jika background websitemu gelap */
-    
-    /* Ini kuncinya: Sembunyi di atas */
+    color: var(--text-primary); 
     transform: translateY(-100%);
     box-sizing: border-box;
     isolation: isolate;
@@ -289,7 +282,7 @@ body.light-mode {
 
 .hero > * {
     opacity: 0;
-    transform: translateY(30px); /* Geser ke bawah sedikit */
+    transform: translateY(30px); 
 }
 
 .hero h1 { font-size: 4rem; margin-bottom: 10px; }
@@ -318,27 +311,37 @@ body.light-mode {
 }
 
 .about {
-    height: 100vh; /* Tinggi satu layar penuh */
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    padding: 100px;
+    gap: 200px;
 }
 
 .about-content {
-    text-align: center;
+    text-align: justify;
 }
 .about-content h2 {
     font-size: 3rem;
     margin-bottom: 20px;
 }
 
-/* Kita sembunyikan anak-anaknya langsung */
 .about-content h2, 
 .about-content p {
     opacity: 0;
     transform: translateY(50px);
+}
+
+.about-image {
+    height: 300px;
+}
+.about-image img {
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
 }
 
 .projects {
@@ -359,7 +362,6 @@ body.light-mode {
     text-align: center;
 }
 
-/* Project Filters */
 .project-filters {
     display: flex;
     justify-content: center;
@@ -393,7 +395,7 @@ body.light-mode {
     width: 100%;
     height: 100%;
     max-width: 1200px;
-    overflow: hidden; /* PENTING: Memotong gambar yang keluar dari kotak */
+    overflow: hidden; 
     margin-bottom: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -438,9 +440,18 @@ body.light-mode {
 
 .project-img {
     width: 100%;
-    height: 120%; /* PENTING: Gambar harus lebih tinggi dari container-nya agar bisa digerakkan */
+    height: 120%; 
     object-fit: cover;
     padding-top: 50px;
+}
+
+.project-audio {
+    width: 100%;
+    max-width: 250px;
+    padding: 20px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-radius: 0 0 10px 10px;
 }
 
 .services {
@@ -496,6 +507,18 @@ body.light-mode {
 .service-item:nth-child(4) { animation-delay: 0.4s; }
 .service-item:nth-child(5) { animation-delay: 0.5s; }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 .service-number {
     font-size: 3.5rem;
     font-weight: 900;
@@ -528,16 +551,6 @@ body.light-mode {
     color: var(--accent-color);
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 
 .testimonials {
@@ -628,7 +641,7 @@ body.light-mode {
     color: var(--text-secondary);
 }
 
-/* Process Timeline */
+
 .process {
     padding: 100px 50px;
     background: var(--bg-secondary);
@@ -705,7 +718,6 @@ body.light-mode {
     font-size: 0.95rem;
 }
 
-/* Contact Section */
 .contact {
     padding: 100px 50px;
     background: var(--bg-primary);
@@ -866,13 +878,25 @@ body.light-mode {
     text-decoration: underline;
 }
 
+
+.footer-links a svg {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover svg {
+    stroke: white;
+}
+
 .footer-text {
     color: #999;
     font-size: 0.9rem;
     margin: 0;
 }
 
-/* Modal Styles */
+
 .modal {
     display: none;
     position: fixed;
@@ -914,6 +938,19 @@ body.light-mode {
     animation: slideUp 0.4s ease;
 }
 
+.modal-video-content {
+    background-color: #222;
+    border-radius: 15px;
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 0 50px rgba(135, 206, 235, 0.5);
+    animation: slideUp 0.4s ease;
+}
+
 @keyframes slideUp {
     from {
         transform: translateY(50px);
@@ -924,7 +961,31 @@ body.light-mode {
         opacity: 1;
     }
 }
+.modal-audio-content {
+    background-color: #222;
+    border-radius: 15px;
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    height: 100%;
+    max-height: 30vh;
+    padding: auto;
+    overflow-y: auto;
+    box-shadow: 0 0 50px rgba(135, 206, 235, 0.5);
+    animation: slideUp 0.4s ease;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
 
+.modal-img-audio {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+    border-radius: 10px
+}
 .modal-close {
     position: absolute;
     right: 20px;
@@ -950,6 +1011,12 @@ body.light-mode {
     display: block;
     border-radius: 10px 10px 0 0;
 }
+.modal-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 10px 10px 0 0;
+}
 
 .modal-info {
     padding: 30px;
@@ -969,6 +1036,68 @@ body.light-mode {
     color: #ddd;
 }
 
+.galery {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    padding-top: 50px;
+}
+
+.galery h2 {
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    width: 100%;
+    text-align: center;
+}
+.documents{
+    margin-top: 100px;
+    margin-bottom: 150px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.documents h2{
+    font-size: 2.5rem;
+    text-align: center;
+    width: 100%;
+    color: var(--text-primary);
+}
+
+.document-container{
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+}
+.document-card{
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
+    text-align: center;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    padding: 50px;
+}
+
+.document-card p{
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    color: var(--text-secondary);
+    margin-bottom: 50px;
+}
+
+
 /* --- Tampilan Mobile (Responsif) --- */
 @media (max-width: 768px) {
     .hamburger {
@@ -980,7 +1109,7 @@ body.light-mode {
     }
 
     .projects {
-        width: 100%; /* Penuh lebar layar HP */
+        width: 100%;
         height: auto; 
         padding: 20px;
     }
@@ -996,7 +1125,6 @@ body.light-mode {
       width: 100%;
     }
 
-    /* 1. Services Section - Responsive */
     .services {
         flex-direction: column;
         padding: 0;
@@ -1041,13 +1169,15 @@ body.light-mode {
     .hero {
         padding: 0px 20px;
     }
+
     .overlay-text {
     color: white;
     font-size: 2rem;
-    opacity: 0; /* Kita sembunyikan dulu biar GSAP yang memunculkan */
+    opacity: 0; 
     text-align: center;
     padding: 20px;
     }
+
     .hero h1 { font-size: 2rem; }
     .hero p { font-size: 1rem; }
     .cursor {
@@ -1085,10 +1215,7 @@ body.light-mode {
         justify-content: space-between;
         align-items: center;
     }
-}
 
-/* Mobile Modal Styles */
-@media (max-width: 768px) {
     .preloader {
         animation: fadeOutPreloader 0.5s ease forwards 2s;
     }
@@ -1123,6 +1250,30 @@ body.light-mode {
         height: 40px;
     }
 
+    .about {
+        flex-direction: column;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: 100px;
+        margin-bottom: 200px;
+
+    }
+
+    .about-image img {
+        height: auto;
+        width: 100%;
+        margin-bottom: 100px;
+
+    }
+    .about-content h2 {
+        font-size: 2rem;
+    }
+    .about-content p {
+        font-size: 1rem;
+    }
+    .projects {
+        margin-top: 200px;
+    }
     .project-filters {
         gap: 10px;
     }
@@ -1221,5 +1372,10 @@ body.light-mode {
     }
     .timeline-content {
         max-width: 80%;
+    }
+    .galery {
+        width: 100%;
+        height: auto; 
+        padding: 20px;
     }
 }

@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Dibuat oleh Arrosyid Al Ayubi, 
+ Mahasiswa Jurusan Sistem Informasi Fakultas Ilmu Komputer Universitas Pamulang -->
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -165,8 +167,10 @@
         <div class="logo"><a href="/"><img src="logo.avif" alt="Logo"></a></div>
         <div class="menu">
             <a href="#tentang">Tentang</a>
-            <a href="#karya">Karya</a>
+            <a href="#karya">Portofolio</a>
             <a href="#skill">Skill</a>
+            <a href="#galery">Galery</a>
+            <a href="#document">Dokumen</a>
             <a href="#kontak">Kontak</a>
         </div>
         <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu">
@@ -179,8 +183,10 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <a href="#tentang" class="mobile-menu-link">Tentang</a>
-            <a href="#karya" class="mobile-menu-link">Karya</a>
+            <a href="#karya" class="mobile-menu-link">Portofolio</a>
             <a href="#skill" class="mobile-menu-link">Skill</a>
+            <a href="#galery" class="mobile-menu-link">Galery</a>
+            <a href="#document" class="mobile-menu-link">Dokumen</a>
             <a href="#kontak" class="mobile-menu-link">Kontak</a>
         </div>
     </div>
@@ -200,8 +206,11 @@
             <h2>Tentang Saya</h2>
             <p class="about-text">
             Saya adalah pengembang web yang fokus pada detail interaksi dan animasi yang halus. 
-            Menciptakan pengalaman digital yang berkesan adalah tujuan utama saya.
+            Menciptakan pengalaman digital yang berkesan adalah tujuan utama saya. Saya adalah Mahasiswa Jurusan Sistem Informasi Fakultas Ilmu Komputer Universitas Pamulang.
             </p>
+        </div>
+        <div class="about-image">
+            <img src="profile-baru.webp" alt="Foto Arrosyid Al Ayubi">
         </div>
     </section>
 
@@ -241,7 +250,7 @@
             <img src="Portfolio-Hiqmauinjakarta.webp" alt="Proyek Website HIQMA" class="modal-img">
             <div class="modal-info">
                 <h2>Proyek HIQMA</h2>
-                <p>Website professional untuk HIQMA UI Jakarta dengan design modern dan interaktif.</p>
+                <p>Website professional untuk HIQMA UIN Jakarta dengan desain refonsif, modern dan interaktif.</p>
             </div>
         </div>
     </div>
@@ -270,7 +279,7 @@
 
     <section id="skill" class="services">
         <div class="services-left">
-            <h2 class="services-title">Expertise</h2>
+            <h2 class="services-title">Skill</h2>
         </div>
         <div class="services-right">
             <div class="service-item">
@@ -373,6 +382,70 @@
         </div>
     </section>
 
+     <section id="galery" class="galery">
+        <h2>Galery Saya</h2>
+        
+        <!-- Gallery Filters -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Semua</button>
+            <button class="filter-btn" data-filter="foto">Foto</button>
+            <button class="filter-btn" data-filter="video">Video</button>
+             <button class="filter-btn" data-filter="audio">Audio</button>
+        </div>
+
+        <div class="project-container">
+            <div class="project-card" data-modal="modal-gambar" data-category="foto">
+                <img src="pemandangan.webp" alt="Proyek Website HIQMA" class="project-img">
+                <span class="view-more">Klik untuk melihat</span>
+            </div>
+            <div class="project-card" data-modal="modal-audio" data-category="audio">
+                <img src="sound.png" alt="Lagu Maher Zain" class="project-audio">
+                <span class="view-more">Klik untuk mendengar</span>
+            </div>
+            <div class="project-card" data-modal="modal-video" data-category="video">
+                <img src="videothumbnail.webp" alt="Proyek Website Kargo Pekanbaru" class="project-img">
+                <span class="view-more">Klik untuk melihat</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Galleries -->
+    <div id="modal-gambar" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img src="pemandangan.webp" alt="Proyek Website HIQMA" class="modal-img">
+        </div>
+    </div>
+
+    <div id="modal-audio" class="modal">
+        <div class="modal-audio-content">
+            <span class="modal-close">&times;</span>
+            <img src="sound.png" alt="Lagu Maher Zain" class="modal-img-audio">
+            <audio src="maherzain-qalbi-fil-madinah.mp3" class="modal-audio-content" controls></audio>
+        </div>
+    </div>
+
+    <div id="modal-video" class="modal">
+        <div class="modal-video-content">
+            <span class="modal-close">&times;</span>
+            <iframe width="560" height="560" src="https://www.youtube-nocookie.com/embed/FJMcywPlaZQ?si=7kCjKc3GbnjTo6tn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="modal-video"></iframe>
+        </div>
+    </div>
+
+    <!-- Document Section -->
+    <section id="document" class="documents">
+        <h2>Dokumen Saya</h2>
+        <div class="document-container">
+            <div class="document-card">
+                <h3>CV Arrosyid Al Ayubi</h3>
+                <p>Curriculum Vitae lengkap dengan pengalaman dan skill saya.</p>
+                <object data="CV-Arrosyid-Al-Ayubi-2025.pdf" type="application/pdf" width="100%" height="500px">
+                <p>Tidak bisa menampilkan PDF. <a href="CV-Arrosyid-Al-Ayubi-2025.pdf">Unduh</a></p>
+                </object>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="kontak" class="contact">
         <h2>Hubungi Saya</h2>
@@ -393,7 +466,7 @@
                     <textarea id="message" name="message" placeholder="Tulis pesan Anda..." rows="5" required></textarea>
                     <span class="error-msg"></span>
                 </div>
-                <button type="submit" class="submit-btn">Kirim Pesan</button>
+                <button type="submit" class="submit-btn" aria-label="Kirim Pesan">Kirim Pesan</button>
                 <div class="form-message"></div>
             </form>
             <div class="contact-info">
@@ -417,10 +490,47 @@
         <div class="footer-content">
             <h3>Hubungi Saya</h3>
             <div class="footer-links">
-                <a href="mailto:ayubirosyid@gmail.com" aria-label="Email">Email</a>
-                <a href="https://github.com/Rearguard98" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
-                <a href="https://www.linkedin.com/in/arrosyid-al-ayubi-b02521141/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
-            </div>
+                <a href="mailto:ayubirosyid@gmail.com" aria-label="Email" title="Email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </a>
+                <a href="https://github.com/Rearguard98" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="Github">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/arrosyid-al-ayubi-b02521141/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/arrosyid.a/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/ayubirosyid" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@therearguard01" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="Tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16.5 5.5c-3.3 0-6 2.7-6 6v8.5a2.5 2.5 0 1 0 5 0v-8.5c0-1.9-1.6-3.5-3.5-3.5s-3.5 1.6-3.5 3.5v8.5a7.5 7.5 0 1 0 15 0v-8.5c0-3.3-2.7-6-6-6z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.youtube.com/@Arrosyid_A" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="Youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.75a29 29 0 0 0-.46-5.33z"></path>
+                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                    </svg>
+                </a>            </div>
             <p class="footer-text">&copy; 2025 Arrosyid Al Ayubi. Semua hak dilindungi.</p>
         </div>
     </footer>
