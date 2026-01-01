@@ -1097,7 +1097,10 @@ body.light-mode {
     margin-bottom: 50px;
 }
 
-
+.btn-pdf {
+    margin-top: 50px;
+    padding: 10px 20px;
+}
 /* --- Tampilan Mobile (Responsif) --- */
 @media (max-width: 768px) {
     .hamburger {

@@ -439,9 +439,10 @@
             <div class="document-card">
                 <h3>CV Arrosyid Al Ayubi</h3>
                 <p>Curriculum Vitae lengkap dengan pengalaman dan skill saya.</p>
-                <object data="CV-Arrosyid-Al-Ayubi-2025.pdf" type="application/pdf" width="100%" height="500px">
-                <p>Tidak bisa menampilkan PDF. <a href="CV-Arrosyid-Al-Ayubi-2025.pdf">Unduh</a></p>
-                </object>
+                <div id="pdf-viewer" style="width: 100%; height: 500px; overflow-y: auto; background-color: #525659; display: flex; flex-direction: column; align-items: center; padding: 20px 0; border-radius: 8px;"></div>
+                <div class="btn-pdf">
+                    <a href="CV-Arrosyid-Al-Ayubi-2025.pdf" target="_blank"><button class="hero-btn">Unduh CV (PDF)</button></a>
+                </div>
             </div>
         </div>
     </section>
@@ -538,6 +539,46 @@
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const url = 'CV-Arrosyid-Al-Ayubi-2025.pdf';
+            const container = document.getElementById('pdf-viewer');
+            
+            // Initialize PDF.js
+            const pdfjsLib = window.pdfjsLib;
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+            pdfjsLib.getDocument(url).promise.then(async function(pdf) {
+                // Render all pages
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const scale = 1.5; // Adjust zoom level here
+                    const viewport = page.getViewport({scale: scale});
+
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    canvas.style.maxWidth = '95%'; // Responsive width
+                    canvas.style.height = 'auto';
+                    canvas.style.marginBottom = '10px';
+                    canvas.style.boxShadow = '0 4px 6px rgba(0,0,0,0.3)';
+
+                    container.appendChild(canvas);
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    await page.render(renderContext).promise;
+                }
+            }).catch(function(error) {
+                console.error('Error loading PDF:', error);
+                container.innerHTML = '<p style="color: white; padding: 20px;">Gagal memuat PDF.</p>';
+            });
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
