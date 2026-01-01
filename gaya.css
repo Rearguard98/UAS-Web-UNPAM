@@ -1381,4 +1381,8 @@ body.light-mode {
         height: auto; 
         padding: 20px;
     }
+    .btn-pdf {
+    margin-top: 50px;
+    padding: 10px 20px;
+    }
 }
